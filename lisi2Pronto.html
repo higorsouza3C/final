@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso Misterioso - A Toda Beleza do Mundo Desapareceu</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+            margin-bottom: 30px;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .option {
+            padding: 10px 20px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 0 10px;
+        }
+
+        .option:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .unclickable {
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: default;
+        }
+
+        .hidden-section {
+            display: none;
+            background-color: #fff;
+            margin: 20px;
+            padding: 30px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 70%;
+            max-width: 800px;
+        }
+
+        .hidden-section:target {
+            display: block;
+        }
+
+        .image-container {
+            margin-bottom: 20px;
+        }
+
+        .article-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .article-image img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+
+        .article-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f8f8f8;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-content p {
+            margin-bottom: 15px;
+        }
+
+        .article-content strong {
+            font-weight: bold;
+        }
+
+        .article-footer {
+            font-size: 0.9em;
+            color: #555;
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .article-footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        /* Ajuste para a parte inicial desaparecer após clicar em "Sim" */
+        .initial-content {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .initial-content.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Estilos para a parte do culpado */
+        .culpado-section {
+            display: none;
+            background-color: #ffffff;
+            margin: 20px;
+            padding: 30px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            width: 70%;
+            max-width: 800px;
+        }
+
+        .culpado-section:target {
+            display: block;
+        }
+
+        .culpado-title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .culpado-image img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #333;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .culpado-text {
+            font-size: 1.2em;
+            color: #333;
+            text-align: center;
+        }
+
+        .culpado-footer {
+            font-size: 0.9em;
+            color: #555;
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Estilo para o novo botão */
+        .final-button {
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .final-button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Estilo para a página "Texto Fofo" */
+        .fofo-page {
+            background: url('https://www.transparenttextures.com/patterns/little-plank.png'), url('https://www.transparenttextures.com/patterns/heart-fabric.png');
+            background-size: 100%, 50%;
+            background-position: center;
+            color: #000000;
+            text-align: center;
+            padding: 50px;
+            display: none;
+        }
+
+        .fofo-page:target {
+            display: block;
+        }
+
+        .fofo-text {
+            font-size: 2em;
+            margin-top: 20px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Edição Especial - A Toda Beleza do Mundo Desapareceu</div>
+
+    <div class="initial-content" id="initialContent">
+        <div class="image-container">
+            <img src="file:///C:/Users/cassi/Downloads/83c3c5126952633.Y3JvcCwxMjAwLDkzOCwwLDEzMA.png" alt="Imagem Inicial" width="300">
+        </div>
+
+        <div class="question">Você está pronta para descobrir o mistério?</div>
+
+        <div class="options">
+            <a href="#jornal" class="option" onclick="showArticle()">Sim</a>
+            <div class="option unclickable" id="naoButton">Não</div>
+        </div>
+    </div>
+
+    <div id="jornal" class="hidden-section">
+        <h1 class="article-title">A Toda Beleza do Mundo Desapareceu</h1>
+        <div class="article-image">
+        </div>
+        <div class="article-content">
+            <p><strong>Por: Repórter Higor Lelé</strong></p>
+            <p>Em uma manhã de domingo, aparentemente comum, o céu despertou mais cinza do que o habitual. O sol parecia se esconder atrás de uma nuvem espessa, e o mundo, de alguma forma, ficou vazio. Sem graça. Sem beleza. As ruas estavam estranhamente silenciosas, e as pessoas começaram a perceber algo que nunca haviam notado antes: tudo ao seu redor parecia… sem vida.</p>
+        <p>"Por que está tudo tão feio?", pensaram muitos. "Onde está a beleza que antes podia ser vista em cada canto do mundo? O que aconteceu comigo?" Era como se algo tivesse sumido, mas ninguém sabia explicar o que. O sentimento de perda e desespero logo se espalhou, e o mundo foi tomado pela dúvida e pelo pânico.</p>
+        <p>À medida que as semanas passaram, o caos aumentava. As notícias estavam repletas de relatos sobre pessoas que não se reconheciam mais, se sentindo como sombras de si mesmas. Tudo o que antes parecia colorido e vibrante agora parecia apagado, sem vida. "O que aconteceu com a beleza do mundo?", era a pergunta constante.</p>
+        <p>Foi então que, em uma tentativa desesperada de encontrar respostas, várias nações se uniram para formar uma força-tarefa chamada "Salon Line". Um time composto pelos melhores investigadores do planeta, todos com um único objetivo: descobrir o que havia acontecido com a beleza do mundo, e, mais importante ainda, quem – ou o quê – havia causado isso.</p>
+        <p>Após meses de investigação, algo peculiar foi descoberto: a beleza não havia desaparecido, mas havia se deslocado para um lugar... inusitado. A lua.</p>
+        <p>Desde o fatídico dia, algo inexplicável aconteceu. A lua, que antes parecia um simples satélite distante, agora irradiava uma beleza intensa e pura, algo nunca visto antes pela humanidade. Sua luz parecia dominar o céu noturno com uma força e um brilho que eclipsava até as estrelas. As pessoas começaram a questionar: seria a lua a verdadeira fonte de toda a beleza perdida?</p>
+        <p>O mistério se aprofundava, e os investigadores de "Salon Line" passaram anos tentando desvendar o enigma. O que acontecera com a beleza do mundo? E por que ela parecia ter se transferido para a lua? Ninguém tinha respostas. Mas a cada noite, a lua se tornava mais deslumbrante, mais irresistível, e os questionamentos continuavam a crescer.</p>
+        <p>Após dezoito longos anos de pesquisa, o time finalmente tomou uma decisão drástica: iriam até a lua. O mundo inteiro estava em alerta, esperando por uma revelação que mudaria tudo. O que eles encontrariam lá? O culpado, talvez? Ou uma verdade ainda mais obscura?</p>
+        <p>Chegando à lua, o que os investigadores de "Salon Line" descobriram deixou todos sem palavras. No centro do solo lunar, ergue-se um espelho colossal, refletindo o que antes parecia impossível. A beleza do mundo não tinha desaparecido – ela estava simplesmente sendo refletida por uma beleza ainda maior, como se fosse ofuscada por algo superior. Mas por quem? Ou por quê?</p>
+        <p>A apreensão tomou conta de todos enquanto a investigação continuava. O espelho parecia ser a chave para o mistério, mas quem seria o responsável por tal reflexo? Foi quando, finalmente, um dos investigadores, atento a cada detalhe, fez a descoberta que todos temiam: no fundo do espelho, um rosto apareceu. Um rosto familiar, mas distorcido por uma aura de mistério.</p>
+        <p>Era ali, naquele reflexo, que a verdadeira face do "culpado" se revelou. A pessoa que, de alguma forma, havia causado a perda da beleza do mundo e a sua transferência para a lua. E quem seria esse culpado? O que eles descobriram foi mais chocante do que qualquer um poderia imaginar...</p>
+    </div>
+
+        <div class="article-footer">
+            <p><strong>Notícia registrada em: 28 de Abril de 2025</strong></p>
+            <p><a href="#culpado" class="option">Descubra o culpado...</a></p>
+        </div>
+    </div>
+
+    <div id="culpado" class="culpado-section">
+        <h1 class="culpado-title">O Culpado é Você</h1>
+        <div class="culpado-image">
+            <img src="file:///C:/Users/cassi/Downloads/Image%20(7).jpeg" alt="Imagem do culpado" width="300">
+        </div>
+        <div class="culpado-text">
+            <p>Agora que você chegou até aqui, é hora de descobrir: o culpado por todo esse mistério é você!</p>
+            <p>Mas... o que isso significa? O que você tem a ver com o desaparecimento da beleza? Talvez a resposta esteja dentro de você mesmo...</p>
+        </div>
+        <div class="culpado-footer">
+            <p><strong>Reflexão final: O mistério só pode ser resolvido por você.</strong></p>
+        </div>
+
+        <!-- Novo botão para ir para a página "Texto Fofo" -->
+        <a href="#fofo" class="final-button">Texto Fofo</a>
+    </div>
+
+    <!-- Página de Texto Fofo -->
+    <div id="fofo" class="fofo-page">
+        <h1>Você é incrível!</h1>
+        <p class="fofo-text"><p>Isso foi só uma brincadeirinha p/ distrair sua mente, tá bem ruim e não é nada demais, e é óbvio q eu não fiz isso do zero (isso ia demorar 1 mês), eu só personalizei e criei a história, mas msm assim deu um trabalho imenso, tô terminando as 3 da manhã.</p>
+
+        <p>Mas vamos lá, a história é auto explicativa, desde o dia que vc nasceu, o mundo teve sua beleza ofuscada, e o motivo? A sua beleza era a coisa mais deslumbrante nesse planeta, perto de vc, até a modelo mais famosa do mundo vira uma pessoa qualquer, a paisagem mais linda do mundo vira um nada perto de vc, vc possui toda a beleza do universo em apenas 1,60 metros. É até difícil descrever vc, pq a cada pedaço vc é incrível. Eu não gosto de falar muito de corpo, mas é impossível não falar do seu, é como se fosse tivesse sido desenhada à mão, suas curvas parecem que foram minimamente planejadas para serem maravilhosas, (com todo respeito, vc é muito gostosaaaaa), e seu rostinho nem preciso falar né, é uma junção de meiga, fofa e marrenta, é como se todas as qualidades de um rosto perfeito estivessem juntas. Seu rosto é como a canção mais perfeita do mundo, é tão harmonizado, que nem parece real, mas ele é. Pra uma pessoa que ama reparar em detalhes, seu rosto é um paraíso, a cada mínimo detalhe é como se umas das 7 maravilhas tivessem na minha frente.</p>
+        
+        <p>Mas de rosto e corpo bonito tem várias por aí, aonde vc realmente se destaca é no seu coração, e a palavra que mais define ele é "luz". Você é luz na vida de todo mundo, vc é uma luz que guia as pessoas, mas vc tb é uma luz que aquece as pessoas e faz bem, é isso tudo graças ao seu coração, nele não há trevas nenhuma. Sem meme, vc é literalmente o evangelho de Jesus em pessoa, tudo aquilo que ele pregava e acreditava, eu consigo ver em vc, a bondade, o amor e tudo mais. Claro, vc não é perfeita, mas a cada dia mais, vc vem se superando, vc tá em evolução constante, e isso é magnífico.</p>
+        
+        <p>É isso pequena, vou ficar por aqui, não vou escrever mais pq tô morrendo de sono. Espero que isso pelo menos te distraia, eu te amo.</p>
+        </p>
+    </div>
+
+    <script>
+        function showArticle() {
+            // Remove a visibilidade da parte inicial
+            document.getElementById('initialContent').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
